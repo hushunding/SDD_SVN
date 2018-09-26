@@ -8,3 +8,4 @@ export function Ceil(n: number, r: number) {
     }
     return res;
 }
+
