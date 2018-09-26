@@ -5,19 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "webRoot": "${workspaceFolder}"
-        },
-        {
             "type": "node",
             "request": "launch",
-            "name": "Electron Main",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-            "program": "${workspaceFolder}/dist/main.js",
-            "protocol": "inspector"
-        },
+            "name": "Launch Program",
+            "program": "${file}",
+            "outFiles": [
+                "./dist/test/**/*.js"
+            ]
+        }
     ]
 }
