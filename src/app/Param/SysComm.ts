@@ -3,6 +3,7 @@ import { VehicleParam } from './Vehicle';
 import { EquipParam } from './Equip';
 import { ProjectParam } from './Project';
 import { ConfigParam } from './Config';
+import { Ceil } from './MyMath';
 
 export interface SysCommParmTmpl<T1, T2> extends NormalParamTmpl<T1, T2> {
     CFG_T_CBI_ALIVE_TO_ZC: T1;
@@ -259,7 +260,16 @@ export class SysCommParam implements SysCommParmTmpl<number, string> {
         };
     }
     // todo 待更新公式
-    get CFG_T_CBI_ALIVE_TO_ZC() { return -1; }
+    get CFG_T_CBI_ALIVE_TO_ZC() {
+        return this.prj.Proj_Cbi2ZcDelay === 0 ?
+            Ceil(
+                this.cnf.Conf_Cbi2ZcCycle +
+                this.cnf.Conf_ComOutTime_CBI +
+                this.cnf.Conf_DcsDelay +
+                this.cnf.Conf_ComInTime_ZC +
+                this.cnf.Conf_BizcCycle, 1000)
+            : this.prj.Proj_Cbi2ZcDelay;
+    }
     get CFG_T_ZC_ALIVE_TO_CBI() { return -1; }
     get CFG_T_ZC_ALIVE_TO_CC() { return -1; }
     get CFG_T_CC_ALIVE_TO_ZC() { return -1; }

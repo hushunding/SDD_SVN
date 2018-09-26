@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { assert } from 'chai';
 import 'mocha';
 import { ParamSet, ParamSetSchematic } from '../app/Param/ParamSet';
 import { NormalParamSchemtic } from '../app/Param/ParamTmpl';
@@ -10,7 +10,7 @@ let NormalParamName = ['Vehicle',
   'Config',
   'SysComm'];
 
-describe('paramSet Testing', () => {
+describe('参数公式测试', () => {
 
   for (const setkey of NormalParamName) {
     const param = paramset[setkey].GetData(0);
