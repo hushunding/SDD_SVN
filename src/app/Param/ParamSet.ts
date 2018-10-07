@@ -21,12 +21,13 @@ interface ParamSetTmpl<T> {
     Equip: T;       // 设备参数
     Project: T;     // 线路参数
     Config: T;      // 系统特性参数
-    SysComm: T;  // 输出-一般参数
+    SysComm: T;     // 输出-一般参数
     SysRoute: T;    // 输出-路由参数
-    // 附录参数
+    PSD: T;         // 屏蔽门
 }
 
 export type ParamSetSchemtic = ParamSetTmpl<NormalParamSchemtic>;
+export type ParamSetComm = ParamSetTmpl<ParamDataSet<any>>;
 
 export const ParamSetSchematic: ParamSetTmpl<NormalParamSchemtic> = {
     // Version: {
@@ -41,7 +42,8 @@ export const ParamSetSchematic: ParamSetTmpl<NormalParamSchemtic> = {
     Project: ProjectSchmetic,   // 线路参数
     Config: ConfigSchematic,     // 系统特性参数
     SysComm: SysCommSchemtic,     // 输出-通用参数
-    SysRoute: SysRouteSchemtic      // 输出-进路参数
+    SysRoute: SysRouteSchemtic,      // 输出-进路参数
+    PSD: {}
 };
 
 export class ParamSet {
@@ -140,8 +142,15 @@ export function GetDefaultParamDataSet<ParamT>(GA: ParamT, tmpl: NormalParamSche
             paramRemark[key] = tmpl[key].Comment;
         }
     }
+
+    const paramset = NewParamDataSet<ParamT>(GA, paramRemark);
+    return paramset;
+}
+
+export function NewParamDataSet<ParamT>(GA: ParamT, paramRemark: {}) {
     const GetData = function (i) { return this.paramSerial[i].Data; };
     const paramset = { paramSerial: [{ Name: '默认', Data: GA }], paramRemark, editing: true, GetData };
     paramset.GetData = GetData.bind(paramset);
     return paramset;
 }
+
