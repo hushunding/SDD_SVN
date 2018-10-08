@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "",
     "build": "tsc",
-    "test": "tsc && nyc --reporter=lcov --reporter=text-summary mocha dist/test/**/*.js "
+    "cove": "tsc && nyc --reporter=lcov --reporter=text-summary mocha dist/test/**/*.js ",
+    "test": "mocha -r node_modules/ts-node/register -R mocha-multi --reporter-options spec=-,xunit=tr.xml,doc=tr.html src/test/**/*.ts"
   },
   "private": true,
   "main": "dist/main.js",
@@ -17,7 +18,7 @@
     "chai": "^4.1.2",
     "concurrently": "^4.0.1",
     "mocha": "^5.2.0",
-    "mocha-typescript": "^1.1.17",
+    "mocha-multi": "^1.0.1",
     "nyc": "^13.0.1",
     "rxjs": "^6.0.0",
     "source-map-support": "^0.5.9",
