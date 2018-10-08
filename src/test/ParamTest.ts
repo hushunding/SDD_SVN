@@ -3,8 +3,8 @@ import 'mocha';
 import { ParamSet, ParamSetSchematic } from '../app/Param/ParamSet';
 import { NormalParamSchemtic } from '../app/Param/ParamTmpl';
 
-let paramset = new ParamSet('Test');
-let NormalParamName = ['Vehicle',
+const paramset = new ParamSet('Test');
+const NormalParamName = ['Vehicle',
   'Equip',
   'Project',
   'Config',
@@ -23,11 +23,11 @@ describe('参数公式测试', () => {
           const r = param[pkey];
           it(`${pkey}`, () => {
             assert.strictEqual(r, e);
-          })
+          });
 
         }
       }
-    })
+    });
   }
   // after(function () {
   //     console.log('after.');
