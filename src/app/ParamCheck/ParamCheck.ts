@@ -15,7 +15,7 @@ function TransNormalSheetDataToObj(sheetdata: any[], outData: ParamSetComm) {
     let startLine = 0;
     for (const dataline of sheetdata) {
         assert.hasAnyKeys(dataline, ['配置值', '配置值1'], '缺少"配置"列');
-        assert.hasAllKeys(dataline, ['参数'], '缺少"参数"列');
+        assert.containsAllKeys(dataline, ['参数'], '缺少"参数"列');
         const ParamName = dataline.参数 as string;
         const Paramset = GetParamSet(ParamName, outData);
         if (Paramset !== null) {
@@ -87,9 +87,10 @@ function ParseConfValue(ConfValue: string) {
  */
 function GetParamSet(ParamName: string, outData: ParamSetComm) {
     let Paramset: ParamDataSet<{}> | null;
-    const prefix = /^(\w+?)_/.exec(ParamName)[0];
-    if (prefixmap.has(prefix)) {
-        const paramType = prefixmap[prefix];
+    const m = /^(\w+?)_/.exec(ParamName);
+    if (m !== null && prefixmap.has(m[1])) {
+        const prefix = m[1];
+        const paramType = prefixmap.get(prefix);
         if (!outData.hasOwnProperty(paramType)) {
             Paramset = NewParamDataSet({}, {});
             outData[paramType] = Paramset;

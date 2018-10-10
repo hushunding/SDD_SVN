@@ -1,7 +1,6 @@
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import 'mocha';
 import { ExcelData } from '../app/Excel/LoadData';
-import { strictEqual } from 'assert';
 import { InputParamTypeList, OutputParamTypeList } from '../app/ParamCheck/ParamCheck';
 
 const testExcel = 'data/test/全项测试集.xlsx';
