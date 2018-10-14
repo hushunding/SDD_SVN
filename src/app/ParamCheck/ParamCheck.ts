@@ -51,7 +51,7 @@ function AddDatalineToParams(Paramset: ParamDataSet<{}>, dataline: any, lineNo: 
         for (let i = 0; i < Paramset.paramSerial.length; i++) {
             const params = Paramset.GetData(i);
             assert.doesNotHaveAnyKeys(params, [ParamName], `参数名重复：${ParamName} 重复`);
-            params[ParamName] = ParseConfValue(dataline[`配置值${i}`]);
+            params[ParamName] = ParseConfValue(dataline[`配置值${i + 1}`]);
         }
     }
 

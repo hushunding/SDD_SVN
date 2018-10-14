@@ -1,4 +1,14 @@
 {
     "mocha.files.glob": "src/test/**/*.ts",
-    "mocha.requires": ["ts-node/register"]
+    "mocha.requires": [
+        "ts-node/register"
+    ],
+    "mochaExplorer.files": "src/test/**/*.ts",
+    "mochaExplorer.require": "ts-node/register",
+    "mochaExplorer.logpanel": true,
+    "bma-coverage":{
+        "lcovs":[
+            "./coverage/lcov.info",
+        ]
+    }
 }
