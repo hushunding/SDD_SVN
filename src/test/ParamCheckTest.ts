@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import 'mocha';
 import { ExcelData } from '../app/Excel/LoadData';
-import { InputParamTypeList, TransExcelDatatoStructObj } from '../app/ParamCheck/ParamCheck';
+import { InputParamTypeList, TransExcelDatatoStructObj } from '../app/ParamCheck/TransExcel';
 import { ParamSetComm } from '../app/Param/ParamSet';
 import { ProjectParam } from '../app/Param/Project';
+import { GetExpectData } from '../app/ParamCheck/CheckData';
 
 const testExcel = 'data/test/全项测试集.xlsx';
 describe('测试ParamCheckTest', () => {
@@ -11,7 +12,7 @@ describe('测试ParamCheckTest', () => {
     before(() => {
         ed = new ExcelData(testExcel);
     });
-    describe('TransNormalSheetDataToObj', () => {
+    describe('TransExcel', () => {
         it('缺少配置列', () => {
             const exceldata = ed.GetJson('输入', ['设备']);
             const outData = {};
@@ -86,6 +87,20 @@ describe('测试ParamCheckTest', () => {
             expect(outData.SysComm.GetData(0)['CFG_V_ATPOPEN_SPD']).to.eqls(5.09);
             expect(outData.SysComm.GetData(1)['CFG_V_ATPOPEN_SPD']).to.eqls(5.71);
             expect(outData.SysComm.GetData(2)['CFG_V_ATPOPEN_SPD']).to.eqls(6.2);
+        });
+        it('屏蔽门开门码', () => {
+            const exceldata = ed.GetJson('输出', ['屏蔽门开门码']);
+            const outData: ParamSetComm = {} as ParamSetComm;
+            TransExcelDatatoStructObj(exceldata, outData);
+            expect(outData.PSD[0]['屏蔽门编号']).to.be.eqls('0101');
+        });
+    });
+    describe('CheckData', () => {
+        it('获取期望值', () => {
+            const exceldata = ed.GetJson('输入', InputParamTypeList);
+            const outData: ParamSetComm = {} as ParamSetComm;
+            TransExcelDatatoStructObj(exceldata, outData);
+            const expectdata = GetExpectData(outData);
         });
     });
 });

@@ -7,7 +7,7 @@ export interface VehicleParmTmpl<T> extends NormalParamTmpl<T> {
     Veh_Hook2Roller: T;
     Veh_Hook2Ante: T;
     Veh_MaxAcc: T;
-    Veb_MaxDec: T;
+    Veh_MaxDec: T;
     Veh_NormDec: T;
     Veh_Gebr: T;
     Veh_Fsbr: T;
@@ -58,7 +58,7 @@ export const VehicleSchemtic: VehicleParamSchemtic = {
         Comment: '', Scole: { type: 'number', min: 0, max: 1.5, step: 0.01 },
         Default: 0.88,
     },
-    Veb_MaxDec: {
+    Veh_MaxDec: {
         Desc: '列车最大制动减速度（不含打滑、不含坡度）', Uint: 'm/s/s', Provider: '车辆供应商',
         Comment: '', Scole: { type: 'number', min: 0, max: 1.5, step: 0.01 },
         Default: 1,
@@ -144,7 +144,7 @@ export class VehicleParam implements VehicleParmTmpl<number> {
     Veh_Hook2Roller = VehicleSchemtic.Veh_Hook2Roller.Default;
     Veh_Hook2Ante = VehicleSchemtic.Veh_Hook2Ante.Default;
     Veh_MaxAcc = VehicleSchemtic.Veh_MaxAcc.Default;
-    Veb_MaxDec = VehicleSchemtic.Veb_MaxDec.Default;
+    Veh_MaxDec = VehicleSchemtic.Veh_MaxDec.Default;
     Veh_NormDec = VehicleSchemtic.Veh_NormDec.Default;
     Veh_Gebr = VehicleSchemtic.Veh_Gebr.Default;
     Veh_Fsbr = VehicleSchemtic.Veh_Fsbr.Default;

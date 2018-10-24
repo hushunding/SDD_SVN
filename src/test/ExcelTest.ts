@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import 'mocha';
 import { ExcelData } from '../app/Excel/LoadData';
-import { InputParamTypeList, OutputParamTypeList } from '../app/ParamCheck/ParamCheck';
+import { InputParamTypeList, OutputParamTypeList } from '../app/ParamCheck/TransExcel';
 
-const testExcel = 'data/test/全项测试集.xlsx';
+const testExcel = 'data/test/格式测试.xlsx';
 describe('Excel文件加载测试', () => {
 
     it('文件不存在测试', () => {
