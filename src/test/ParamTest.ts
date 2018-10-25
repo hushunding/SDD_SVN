@@ -10,7 +10,7 @@ const NormalParamName = ['Vehicle',
   'Config',
   'SysComm'];
 
-describe('参数公式测试', () => {
+describe.skip('参数公式测试', () => {
 
   for (const setkey of NormalParamName) {
     const param = paramset[setkey].GetData(0);
